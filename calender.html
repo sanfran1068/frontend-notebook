@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="content-type" charset="utf-8">
+    <style>
+      * {box-sizing:border-box;}
+      ul {list-style-type: none;}
+      body {font-family: Verdana,sans-serif;}
+
+      .month {
+        padding: 70px 0;
+        width: 100%;
+        background: #1abc9c;
+      }
+
+      .month ul {
+        margin: 0;
+        padding: 0;
+      }
+
+      .month ul li {
+        color: white;
+        font-size: 20px;
+        text-transform: uppercase;
+        letter-spacing: 3px;
+      }
+
+      .month .prev {
+        float: left;
+        padding-top: 10px;
+        cursor: pointer;
+        position: absolute;
+        width: auto;
+        padding: 16px;
+        color: white;
+        font-weight: bold;
+        font-size: 18px;
+        transition: 0.6s ease;
+        border-radius: 0 3px 3px 0;
+      }
+
+      .month .next {
+        float: right;
+        padding-top: 10px;
+        cursor: pointer;
+        width: auto;
+        padding: 16px;
+        color: white;
+        font-weight: bold;
+        font-size: 18px;
+        transition: 0.6s ease;
+        border-radius: 3px 0 0 3px;
+      }
+
+      .prev:hover, .next:hover {
+        background-color: rgba(0,0,0,0.8);
+      }
+
+      .weekdays {
+        margin: 0;
+        padding: 10px 0;
+        background-color: #ddd;
+      }
+
+      .weekdays li {
+        display: inline-block;
+        width: 13.6%;
+        color: #666;
+        text-align: center;
+      }
+
+      .days {
+        padding: 10px 0;
+        background: #eee;
+        margin: 0;
+      }
+
+      .days li {
+        list-style-type: none;
+        display: inline-block;
+        width: 13.6%;
+        text-align: center;
+        margin-right: 6px;
+        margin-bottom: 5px;
+        font-size:12px;
+        color: #777;
+      }
+
+      .days li .active {
+        padding: 5px;
+        background: #1abc9c;
+        color: white !important
+      }
+
+      /* Add media queries for smaller screens */
+      @media screen and (max-width:720px) {
+        .weekdays li, .days li {width: 13.1%;}
+      }
+
+      @media screen and (max-width: 420px) {
+        .weekdays li, .days li {width: 12.5%;}
+        .days li .active {padding: 2px;}
+      }
+
+      @media screen and (max-width: 290px) {
+        .weekdays li, .days li {width: 12.2%;}
+      }
+    </style>
+
+  </head>
+
+  <body>
+
+    <h1>CSS 日历</h1>
+
+    <div class="month">
+      <ul>
+        <li class="prev">❮</li>
+        <li class="next">❯</li>
+        <li style="text-align:center" id="month">
+          August<br>
+          <span style="font-size:18px" id="year">2016</span>
+        </li>
+      </ul>
+    </div>
+
+    <ul class="weekdays">
+      <li>Mo</li>
+      <li>Tu</li>
+      <li>We</li>
+      <li>Th</li>
+      <li>Fr</li>
+      <li>Sa</li>
+      <li>Su</li>
+    </ul>
+
+    <ul class="days" id="days">
+
+    </ul>
+  </body>
+
+  <script>
+    var date = new Date();
+    var year = date.getFullYear();
+    var weekday = date.getDay() + 1;
+    var month = (function(){
+      switch (date.getMonth()) {
+        case 0: return "January";
+          break;
+        case 1: return "February";
+          break;
+        case 2: return "March";
+          break;
+        case 3: return "April";
+          break;
+        case 4: return "May";
+          break;
+        case 5: return "June";
+          break;
+        case 6: return "July";
+          break;
+        case 7: return "August";
+          break;
+        case 8: return "September";
+          break;
+        case 9: return "October";
+          break;
+        case 10: return "November";
+          break;
+        case 11: return "December";
+          break;
+      }
+    })();
+    document.getElementById("month").innerHTML = month + '<br><span style="font-size:18px" id="year">' + year + '</span>';
+
+    var days = (function(){
+      switch(date.getMonth() + 1){
+        case 1: case 3: case 5: case 7: case 8: case 10: case 12: return 31;
+          break;
+        case 4: case 6: case 8: case 9: case 11: return 30;
+          break;
+        case 2:
+          if((date.getFullYear() % 400) == 0) {
+            return 29;
+          } else if(((date.getFullYear() % 4) == 0) && ((date.getFullYear() % 100) != 0)) {
+            return 29;
+          } else {
+            return 28;
+          }
+          break;
+      }
+    })();
+
+
+    dayValue = date.getFullYear() + '-' + (date.getMonth() + 1) + '-1';
+    var firstDayOfMonth = new Date(Date.parse(dayValue.replace(/-/g, '/')))
+    var spaces = date.getDay(firstDayOfMonth);
+    console.log(firstDayOfMonth);
+
+    var daysContent = "";
+    for(var i = 0;i <= spaces;i++)
+    {
+      daysContent += "<li></li>";
+    }
+    for(var i = 1;i <= days;i++)
+    {
+      if(i == date.getDate())
+      {
+        daysContent += '<li><span class="active">' + i + '</span></li>';
+      }
+      else {
+        daysContent += "<li>" + i + "</li>";
+      }
+    }
+    document.getElementById("days").innerHTML = daysContent;
+  </script>
+
+</html>

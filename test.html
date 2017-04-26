@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  </head>
+  <body>
+    <input type="text" id="test" size="20" value="请输入内容"
+          style="color: gray"
+          onfocus="this.value = ''; this.style.color = '';"
+          onblur="if(this.value == '') {
+                    this.value = '请输入内容';
+                    this.style.color = 'gray';
+          }"
+    />
+
+    <script>
+      var day = new Date().getDay();
+      alert(day);
+    </script>
+  </body>
+</html>

@@ -1,0 +1,27 @@
+1.标识符：变量、函数、属性、函数参数等的名字，由字母/下划线/一个美元符号开头
+2.注释：//单行注释，/*   */多行注释；
+3.严格模式：在脚本顶部或者某函数内顶部添加”use strict”,支持IE10+,Firefox4+，Safari5.1+，Opera12+，Chrome；
+4.语句：由分号结尾，多条语句以花括号包围形成代码块；
+  if语句：
+  do-while语句：
+  while语句：
+  for语句：
+  for-in语句：
+  label语句：添加标签
+  break和continue语句：
+  with语句：避免多次编写同一个对象的工作，with(objectName) statement
+  switch语句：
+5.关键字和保留字：
+6.变量：ECMAScript中变量为松散类型，var定义局部变量，可以不赋值（此时为undefined类型）；无var定义全局变量（但是严格模式下回抛出错误）；
+7.数据类型：由typeof操作符可以显示给定变量的数据类型，有undefined、boolean、string、number、object、function六中数据类型；
+          undefined：未声量变量使用typeof操作符时显示undefined，而且对未声明变量使用alert()方法会报错；
+          null：对值为null的变量使用typeof时返回object，因为null表示一个空对象指针；null==undefined总是返回true；
+          boolean：true&false，注意各种数据类型对应boolean值得转换规则；
+          number：八进制0开头，十六进制0x；NaN不等于任何值；非数值转换为数值的三个函数：number(),parseInt("10",进制),parseFloat();数值转换-true:1，false:0，null:0，undefined:NaN；字符串转换规则-只包含有效数字转化为非0开头数值，空字符串转化为0，字符串包含除有效数字之外的转换为NaN；如果是对象则调用valueO()方法按照前面规则转换；
+          string：字符串不可变，改变时会将原来的变量值销毁再重新赋值；数值、布尔值、对象和字符串值都有toString()方法；
+          object：都有Constructor、hasOwnproperty(propertyName)、isPrototypeOf(object)、propertyIsEnumerable(propertyName)、toLocaleString()、toString()、valueOf();
+8.操作符：一元：++、--、+、-、~位、!逻辑、
+         二元：&位、|位、^、<<、>>、>>>、&&逻辑、||逻辑、+、-、*、/、%、>、<、>=、<=、==、!=、===、!==、
+         三元：boolean_expression？true_value:false_value;
+         赋值：=、+=、-=、*=、/=、%=、<<=、>>=、>>>=
+9.函数：使用function关键词声明函数，参数类似数组并可省略，参数（和js中的基本类型）都是传值而非传引用（例如string对象）；名字相同的函数只有后定义的函数可以使用；
